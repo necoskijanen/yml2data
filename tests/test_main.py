@@ -1,4 +1,4 @@
-from main import Common, OutputConfig
+from base import Common, OutputConfig
 from main import OutputUnit, OutputList
 from main import PluginManager
 from main import load_yml, get_module_name
@@ -11,7 +11,7 @@ common01 = {
     "generator_prefix": "use.",
     "encoder_prefix": "enc.",
     "stream_prefix": "dst.",
-    "paths": ["./tests/plugin"],
+    "paths": ["./plugin"],
     "seed": 0,
 }
 
@@ -31,7 +31,7 @@ output_config01 = {
 
 def test_module_name():
     sets = {
-        "tests/sample_plugin.py": "tests.sample_plugin"
+        "sample_plugin.py": "sample_plugin"
     }
     for test, expect in sets.items():
         assert get_module_name(test) == expect
@@ -49,7 +49,7 @@ def test_check_path_error():
     data = load_yml("./tests/test_main.yml")
     with pytest.raises(ValueError) as e:
         _ = Common(**data["common_path_error"]).paths
-    assert "tests/missed" in str(e.value)
+    assert "missed" in str(e.value)
 
 
 def test_seed_int():

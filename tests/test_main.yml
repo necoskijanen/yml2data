@@ -5,8 +5,8 @@ common_path_pass:
 
 common_path_error:
   paths:
-    - ./plugin
-    - ./tests/missed
+    - ./missed
+    - ./tests/plugin
 
 common_seed_int:
   seed: 10
