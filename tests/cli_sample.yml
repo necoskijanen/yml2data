@@ -1,0 +1,17 @@
+common:
+  paths: ["./tests/plugin"]
+outputs:
+  case1:
+    config:
+      target: dst.stdout
+      type: enc.csv
+      count: 1
+    mapping:
+      id: 1
+  case2:
+    config:
+      target: dst.stdout
+      type: enc.json
+      count: 1
+    mapping:
+      name: foo bar

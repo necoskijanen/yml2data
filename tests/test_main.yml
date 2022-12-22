@@ -1,0 +1,137 @@
+common_path_pass:
+  paths:
+    - ./plugin
+    - ./tests/plugin
+
+common_path_error:
+  paths:
+    - ./plugin
+    - ./tests/missed
+
+common_seed_int:
+  seed: 10
+
+common_seed_time:
+  seed: time
+
+common_seed_error:
+  seed: invalid
+
+terminator_lf:
+  terminator: LF
+
+terminator_error:
+  terminator: INVALID
+
+type_json:
+  type: enc.json
+
+type_error:
+  type: enc.invalid
+
+outputunit:
+  config:
+    target: dst.stderr
+    count: 3
+    type: enc.csv
+    charset: utf-8
+    terminator: CRLF
+    indent: 2
+    header: false
+    delimiter: ":"
+  mapping:
+    - id: 0
+    - name: yamada
+
+outputlist:
+  common:
+    paths: ["./tests/plugin"]
+  outputs:
+    case1:
+      config:
+        target: dst.stderr
+      mapping:
+        - id:
+            use.sample:
+              value: 100
+              fmt: "@{0}"
+        - value: use.sample
+        - hoge:
+            foo: "bar"
+
+jsonfile:
+  common:
+    paths: ["./tests/plugin"]
+  outputs:
+    case1:
+      config:
+        target:
+          dst.file: ./tests/test_outputs/json_test.txt
+        type: enc.json
+        count: 2
+        indent: null
+        terminator: LF
+      mapping:
+        id:
+          use.sample:
+            value: 100
+            fmt: "xx{0}xx"
+        user:
+          name: "user01"
+          mail_address:
+            - "01@sample.com"
+            - 100
+
+csvfile:
+  common:
+    paths: ["./tests/plugin"]
+  outputs:
+    case1:
+      config:
+        target:
+          dst.file: ./tests/test_outputs/csv_test.txt
+        type: enc.csv
+        count: 2
+        quotechar: '"'
+        quoting: NONNUMERIC
+        terminator: LF
+        header: true
+      mapping:
+        id:
+          use.sample:
+            value: use.counter
+            fmt: "xx{0}xx"
+        user.name: "user01"
+        user.mail_address: "01@sample.com"
+        integer: 20
+
+exprtest:
+  common:
+    paths: ["./tests/plugin"]
+  outputs:
+    case1:
+      config:
+        target: { dst.file: "./tests/test_outputs/expr_test.txt" }
+        type: enc.csv
+        count: 1
+        quotechar: '"'
+        quoting: NONNUMERIC
+        terminator: LF
+        header: false
+      mapping:
+        add:
+          use.formatter:
+            value: use.expr_sample
+            format: ID{0:04d}
+
+stdout:
+  common:
+    paths: ["./tests/plugin"]
+  outputs:
+    case1:
+      config:
+        target: dst.stdout
+        type: enc.csv
+        count: 1
+      mapping:
+        id: 1
