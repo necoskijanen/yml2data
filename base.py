@@ -94,7 +94,7 @@ class OutputConfig(BaseModel):
         elif t == dict:
             for key in target.keys():
                 return key
-    
+
     def get_target_value(self) -> str:
         target = self.target
         t = type(target)

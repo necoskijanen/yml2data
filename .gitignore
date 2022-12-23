@@ -136,3 +136,4 @@ dmypy.json
 
 # test outputs
 tests/test_outputs/*
+!tests/test_outputs/empty
