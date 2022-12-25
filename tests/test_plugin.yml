@@ -1,0 +1,11 @@
+common:
+  paths: ["./tests/plugin", "./plugin"]
+outputs:
+  case_rnd:
+    config:
+      target: { dst.file: "./tests/test_outputs/rnd_test.json" }
+      type: enc.json
+      count: 1
+    mapping:
+      rndint: { use.rnd: { min: 1, max: 10, type: int } }
+      rndfloat: { use.rnd: { min: 0.0, max: 5.0, type: float } }

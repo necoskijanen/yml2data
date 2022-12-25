@@ -1,7 +1,7 @@
 import importlib
 import yaml
 from pydantic import BaseModel, Extra
-from typing import Dict, List
+from typing import Dict, List, Tuple
 from base import Common, OutputConfig
 from writer import EncoderFactory, StreamFactory, Writer
 from generator import GeneratorFactory, Const, GeneratorBase
@@ -168,10 +168,11 @@ def pickup_pattern(data, pattern: List[str]):
     return new_data
 
 
-def execute(path: str, pattern: List[str]):
+def execute(path: str, pattern: List[str]) -> Tuple[object, OutputList, PluginManager]:
     data = load_yml(path)
     data = pickup_pattern(data, pattern)
     outlist = OutputList(**data)
     plugins = PluginManager(outlist.common)
     outlist.setup(plugins)
     outlist.write(plugins)
+    return (data, outlist, plugins)
