@@ -2,14 +2,7 @@ from generator import GeneratorBase, Const
 import sys
 
 
-def get_default(obj, default):
-    if obj is not None:
-        return obj
-    else:
-        return Const(default)
-
-
-class Seq(GeneratorBase):
+class Sequence(GeneratorBase):
 
     def __init__(self, min=Const(0), max=Const(sys.maxsize), step=Const(1)) -> None:
         self._min = min

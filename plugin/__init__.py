@@ -1,8 +1,8 @@
 from generator import GeneratorFactory
-from plugin.seq import Seq
-from plugin.rnd import Rnd
+from plugin.sequence import Sequence
+from plugin.random import Random
 
 
 def register_generator(factory: GeneratorFactory):
-    factory.register("seq", Seq)
-    factory.register("rnd", Rnd)
+    factory.register("seq", Sequence)
+    factory.register("rnd", Random)

@@ -2,7 +2,7 @@ import random
 from generator import GeneratorBase
 
 
-class Rnd(GeneratorBase):
+class Random(GeneratorBase):
     def __init__(self, min, max, type) -> None:
         self._min = min
         self._max = max
