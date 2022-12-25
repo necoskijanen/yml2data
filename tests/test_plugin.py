@@ -45,3 +45,7 @@ def test_random():
     actual = actuals["rndfloat"]
     assert type(actual) == float
     assert is_between(0.0, 5.0, actual)
+
+    actual = actuals["rnddefault"]
+    assert type(actual) == float
+    assert is_between(0.0, 1.0, actual)

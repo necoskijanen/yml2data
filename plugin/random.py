@@ -1,9 +1,9 @@
 import random
-from generator import GeneratorBase
+from generator import GeneratorBase, Const
 
 
 class Random(GeneratorBase):
-    def __init__(self, min, max, type) -> None:
+    def __init__(self, min=Const(0), max=Const(1), type=Const("float")) -> None:
         self._min = min
         self._max = max
         self._type = type

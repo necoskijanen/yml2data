@@ -17,3 +17,4 @@ outputs:
     mapping:
       rndint: { use.rnd: { min: 1, max: 10, type: int } }
       rndfloat: { use.rnd: { min: 0.0, max: 5.0, type: float } }
+      rnddefault: use.rnd
