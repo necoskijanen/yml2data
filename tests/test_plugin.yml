@@ -1,6 +1,14 @@
 common:
   paths: ["./tests/plugin", "./plugin"]
 outputs:
+  case_seq:
+    config:
+      target: { dst.file: "./tests/test_outputs/seq_test.json" }
+      type: enc.json
+      count: 3
+    mapping:
+      seq1: { use.seq }
+      seq2: { use.seq: { min: 1, max: 3, step: 2 } }
   case_rnd:
     config:
       target: { dst.file: "./tests/test_outputs/rnd_test.json" }

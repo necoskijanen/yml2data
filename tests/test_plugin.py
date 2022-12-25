@@ -19,6 +19,19 @@ def is_between(min, max, val) -> bool:
         return False
 
 
+def test_sequence():
+    pattern = "case_seq"
+    _, outlist, _ = execute(TEST_PLUGIN_YML_PATH, [pattern])
+    file = outlist.outputs[pattern].config.get_target_value()
+    actual = [json.loads(line) for line in load_file(file)]
+    expect = [
+        {"seq1": 0, "seq2": 1},
+        {"seq1": 1, "seq2": 3},
+        {"seq1": 2, "seq2": 1},
+    ]
+    assert actual == expect
+
+
 def test_random():
     pattern = "case_rnd"
     _, outlist, _ = execute(TEST_PLUGIN_YML_PATH, [pattern])

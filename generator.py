@@ -18,7 +18,10 @@ class GeneratorBase:
 class Const(GeneratorBase):
 
     def __init__(self, args) -> None:
-        self.value = args["value"]
+        if type(args) == dict:
+            self.value = args["value"]
+        else:
+            self.value = args
 
     def get(self):
         return self.value
@@ -66,6 +69,7 @@ class GeneratorFactory(FactoryBase):
             super().register(key, plugin_type)
 
     def create(self, key: str, args):
+        args = {} if args is None else args
         plugin_type = self._map.get(key)
         if plugin_type is None:
             plugin = self._expr_map[key]

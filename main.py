@@ -91,8 +91,10 @@ class OutputUnit(BaseModel):
             else:
                 new_value = Const({"value": mapping})
             return new_value
-        else:
+        elif mapping is not None:
             return Const({"value": mapping})
+        else:
+            return None
 
     def setup(self, plugins: PluginManager):
         self._setup(self.config.target, plugins)
